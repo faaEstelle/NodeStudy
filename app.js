@@ -10,6 +10,9 @@ var mongoose = require('mongoose')
 //用body-parser处理post提交的数据
 var bodyParser = require('body-parser')
 
+//用cookies记录用户登录状态
+var cookies = require('cookies')
+
 var app = express()
 
 //设置模板目录及模板文件类型
@@ -22,6 +25,16 @@ app.use('/public', express.static(__dirname + '/public'))
 
 //配置body-parser
 app.use(bodyParser.urlencoded({extended: true}))
+
+//设置cookies
+app.use(function (req, res, next) {
+  req.userInfo = {}
+  if (req.cookies.get('userInfo')) {
+    try {
+      res.userInfo = JSON.parse(req.cookies.get('userInfo'))
+    }
+  }
+})
 
 //路由
 app.use(Router)
