@@ -6,10 +6,10 @@
         <div class="col-lg-4">
             <% if (userInfo._id){ %>
             <div class="loginSuccess">
-                <div class="user"></div>
+                <p><span class="user"><%= userInfo.username %></span>，欢迎访问我的博客</p>
+                <a>退出</a>
             </div>
-            <% } %>
-            <% else { %>
+            <% }else{ %>
             <div class="login">
                 <input type="text" name="username">
                 <input type="password" name="pwd">
@@ -17,7 +17,6 @@
                 <p>没有账号？ <a>马上注册</a></p>
                 <div class="Info"></div>
             </div>
-
             <div class="register">
                 <input type="text" name="username">
                 <input type="password" name="pwd">
@@ -25,8 +24,8 @@
                 <p>已有账号， <a>登录</a></p>
                 <div class="Info"></div>
             </div>
-            <% } %>
 
+            <% } %>
         </div>
     </div>
 </div>

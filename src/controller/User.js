@@ -51,12 +51,10 @@ module.exports = {
   Login (req, res, next) {
     var username = req.body.username
     var pwd = req.body.pwd
-    console.log('username' + username)
     User.findOne({
       username: username,
       pwd: pwd
     }).then(function (userInfo) {
-      console.log(userInfo)
       if (!userInfo) {
         responseData.code = 1
         responseData.message = '用户或密码错误'
@@ -64,11 +62,17 @@ module.exports = {
         return
       }
       responseData.message = '登录成功'
-      res.json({
-        code: 0,
-        message: '登录成功',
-        username: username,
-      })
+      responseData.userInfo = {
+        _id: userInfo._id,
+        username: username
+      }
+      //将用户登录信息以字符串的形式存入cookie
+      req.cookies.set('userInfo', JSON.stringify({
+        _id: responseData.userInfo._id,
+        username: username
+      }))
+      res.json(responseData)
+      return
     })
   }
 }

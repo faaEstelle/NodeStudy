@@ -47,7 +47,7 @@ $(function () {
         if (result.code === 1) {
           $login.find('.Info').html(result.message)
         } else if (!result.code) {
-
+          window.location.reload()
         }
       }
     })

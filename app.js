@@ -28,12 +28,20 @@ app.use(bodyParser.urlencoded({extended: true}))
 
 //设置cookies
 app.use(function (req, res, next) {
+  //定义cookie对象，将cookie的req, res传入
+  req.cookies = new cookies(req, res)
+
+  //解析登录用户的cookie信息
   req.userInfo = {}
   if (req.cookies.get('userInfo')) {
     try {
-      res.userInfo = JSON.parse(req.cookies.get('userInfo'))
-    }
+      req.userInfo = JSON.parse(req.cookies.get('userInfo'))
+
+    } catch (e) {}
+  } else {
+    next()
   }
+
 })
 
 //路由
