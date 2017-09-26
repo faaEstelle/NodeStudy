@@ -6,8 +6,12 @@
         <div class="col-lg-4">
             <% if (userInfo._id){ %>
             <div class="loginSuccess">
+                <% if (userInfo.IsAdmin){ %>
+                <p><a>管理我的博客</a></p>
+                <% }else{ %>
                 <p><span class="user"><%= userInfo.username %></span>，欢迎访问我的博客</p>
-                <a>退出</a>
+                <% } %>
+                <a id="logOff">退出</a>
             </div>
             <% }else{ %>
             <div class="login">

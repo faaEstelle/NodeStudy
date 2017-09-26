@@ -51,6 +51,20 @@ $(function () {
         }
       }
     })
+  });
+  //退出登录
+  $('#logOff').on('click', function () {
+    $.ajax({
+      type: 'get',
+      url: '/user/logOff',
+      data: {},
+      success: function (result) {
+        if (result) {
+          window.location.reload()
+        }
+      }
+
+    })
   })
 
 })

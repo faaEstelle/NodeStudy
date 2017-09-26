@@ -74,5 +74,9 @@ module.exports = {
       res.json(responseData)
       return
     })
+  },
+  LogOut (req, res, next) {
+    req.cookies.set('userInfo', null)
+    res.json(responseData)
   }
 }
