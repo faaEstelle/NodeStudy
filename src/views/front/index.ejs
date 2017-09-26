@@ -7,7 +7,7 @@
             <% if (userInfo._id){ %>
             <div class="loginSuccess">
                 <% if (userInfo.IsAdmin){ %>
-                <p><a>管理我的博客</a></p>
+                <p><a href="/admin" target="_blank">管理我的博客</a></p>
                 <% }else{ %>
                 <p><span class="user"><%= userInfo.username %></span>，欢迎访问我的博客</p>
                 <% } %>

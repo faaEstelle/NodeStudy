@@ -5,11 +5,11 @@ $(function () {
   $login.find('a').on('click', function () {
     $login.hide()
     $register.show()
-  });
+  })
   $register.find('a').on('click', function () {
     $login.show()
     $register.hide()
-  });
+  })
 
   //注册
   $register.find('button').on('click', function () {
@@ -33,7 +33,7 @@ $(function () {
         }
       }
     })
-  });
+  })
   //登录
   $login.find('button').on('click', function () {
     $.ajax({
@@ -51,12 +51,12 @@ $(function () {
         }
       }
     })
-  });
+  })
   //退出登录
   $('#logOff').on('click', function () {
     $.ajax({
       type: 'get',
-      url: '/user/logOff',
+      url: '/user/logOut',
       data: {},
       success: function (result) {
         if (result) {
