@@ -43,7 +43,6 @@ app.use(function (req, res, next) {
         req.userInfo.IsAdmin = userInfo.IsAdmin
         next()
       })
-
     } catch (e) {
       next()
     }

@@ -1,0 +1,35 @@
+<div class="container">
+    <% include nav.ejs %>
+    <div class="userList">
+        <table class="table table-bordered">
+            <tr>
+                <td>ID</td>
+                <td>用户名</td>
+                <td>密码</td>
+                <td>是否为管理员</td>
+            </tr>
+            <% users.forEach(function (u) {
+            %>
+            <tr>
+                <td><%= u._id %></td>
+                <td><%= u.username %></td>
+                <td><%= u.pwd %></td>
+                <td><%= (u.IsAdmin ? '是' : '否') %></td>
+            </tr>
+            <%
+            }) %>
+
+        </table>
+    </div>
+    <nav aria-label="...">
+        <ul class="pager">
+            <li class="previous"><a href="/admin/userManager?page=<%= ((page - 1) > 0 ? (page - 1) : 1) %>"><span
+                            aria-hidden="true">&larr;</span> 上一页</a></li>
+            <li>
+                一共有<%= count %>条数据，每页显<%= limit %>示条，共<%= maxPage %>页，当前是第<%= page %>页
+            </li>
+            <li class="next"><a href="/admin/userManager?page=<%= ((page < maxPage) ? (page + 1) : maxPage) %>">下一页
+                    <span aria-hidden="true">&rarr;</span></a></li>
+        </ul>
+    </nav>
+</div>
