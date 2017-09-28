@@ -1,14 +1,15 @@
 <div class="container">
-    <h3>添加分类</h3>
-    <form action="/admin/category/add" method="post">
+    <h3><%= (IsEdit ? '修改分类' : '添加分类') %></h3>
+    <form action="/admin/category/<%= (IsEdit ? 'edit' : 'add') %>" method="post">
         <div class="form-group">
             <label for="exampleInputEmail1">分类名称</label>
-            <input type="text" class="form-control" name="name">
+            <input type="text" class="form-control" name="name" value="<%= category.name %>">
         </div>
         <div class="form-group">
             <label for="exampleInputPassword1">代号</label>
-            <input type="text" class="form-control" name="code">
+            <input type="text" class="form-control" name="code"
+                   value="<%= category.code %>" <%= (IsEdit ? 'disabled' : '') %>>
         </div>
-        <button type="submit" class="btn btn-default">添加</button>
+        <button type="submit" class="btn btn-default"><%= (IsEdit ? '修改' : '添加') %></button>
     </form>
 </div>

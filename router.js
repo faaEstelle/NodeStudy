@@ -17,5 +17,8 @@ router.get('/admin/userManager', Admin.UserManager)
 router.get('/admin/category', Admin.Category)
 router.get('/admin/category/add', Admin.AddCategoryView)
 router.post('/admin/category/add', Admin.AddCategory)
+router.get('/admin/category/edit', Admin.EditCategoryView)
+router.post('/admin/category/edit', Admin.EditCategory)
+router.get('/admin/category/del', Admin.DelCategory)
 
 module.exports = router

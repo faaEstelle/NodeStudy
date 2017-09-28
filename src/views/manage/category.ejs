@@ -9,5 +9,15 @@
             <td>代号</td>
             <td>操作</td>
         </tr>
+        <% categories.forEach(function (c) {
+        %>
+        <tr>
+            <td><%= c.name %></td>
+            <td><%= c.code %></td>
+            <td><a href="/admin/category/edit?id=<%= c._id.toString() %>">修改</a><a
+                        href="/admin/category/del?id=<%= c._id.toString() %>">删除</a></td>
+        </tr>
+        <%
+        }) %>
     </table>
 </div>
