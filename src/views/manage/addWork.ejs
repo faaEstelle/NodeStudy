@@ -1,0 +1,31 @@
+<div class="container">
+    <h3><%= (IsEdit ? '修改作品' : '添加作品') %></h3>
+    <form action="/admin/work<%= (IsEdit ? ('/' + work._id) : '') %>/<%= (IsEdit ? 'edit' : 'add') %>" method="post"
+          enctype="multipart/form-data">
+        <div class="form-group">
+            <label for="exampleInputEmail1">作品名称</label>
+            <input type="text" class="form-control" name="title" value="<%= work.tilte %>">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">作者</label>
+            <input type="text" class="form-control" name="author"
+                   value="<%= work.author %>" <%= (IsEdit ? 'disabled' : '') %>>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">类别</label>
+            <input type="text" class="form-control" name="kind"
+                   value="<%= work.kind %>" <%= (IsEdit ? 'disabled' : '') %>>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">展示图</label>
+            <input type="file" name="fileImg" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">介绍</label>
+            <textarea type="text" class="form-control" name="introduce">
+                <%= work.introduce %>
+            </textarea>
+        </div>
+        <button type="submit" class="btn btn-default"><%= (IsEdit ? '修改' : '添加') %></button>
+    </form>
+</div>

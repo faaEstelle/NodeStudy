@@ -14,7 +14,7 @@
         <tr>
             <td><%= c.name %></td>
             <td><%= c.code %></td>
-            <td><a href="/admin/category/edit?id=<%= c._id.toString() %>">修改</a><a
+            <td><a href="/admin/category/<%= c._id.toString() %>/edit">修改</a><a
                         href="/admin/category/del?id=<%= c._id.toString() %>">删除</a></td>
         </tr>
         <%

@@ -1,5 +1,6 @@
 var User = require('../modal/Users')
 var Cagetory = require('../modal/categories')
+
 var mongoose = require('mongoose')
 var IsEdit = false
 
@@ -41,13 +42,11 @@ module.exports = {
         })
       })
     })
-
   },
   Category (req, res, next) {
     Cagetory.find().then(function (categories) {
       res.render('manage/category', {title: '分类管理', layout: 'template', categories: categories})
     })
-
   },
   AddCategoryView (req, res, next) {
     var category = new Cagetory()
@@ -84,7 +83,7 @@ module.exports = {
     })
   },
   EditCategoryView (req, res, next) {
-    var id = req.query.id
+    var id = req.params.id
     console.log(id)
     IsEdit = true
     Cagetory.findById(id).then(function (category) {
@@ -98,20 +97,22 @@ module.exports = {
     })
   },
   EditCategory (req, res, next) {
-    var id = req.query.id
+    var id = req.params.id
     console.log(id)
     var name = req.body.name
+    console.log(name)
     Cagetory.findById(id).then(function (category) {
       console.log('1:' + category)
       if (!category) {
         res.render('manage/error', {title: '修改分类', errorInfo: '分类不存在'})
         return Promise.reject()
       } else {
-        if (name = category.name) {
+        if (name === category.name) {
           res.render('manage/error', {title: '修改分类', errorInfo: '未做任何修改'})
           return Promise.reject()
         } else {
-          return Cagetory.findOnd({
+          console.log('修改查询中')
+          return Cagetory.findOne({
             _id: {$ne: id},
             name: name
           })
@@ -123,6 +124,7 @@ module.exports = {
         res.render('manage/error', {title: '修改分类', errorInfo: '分类已存在'})
         return Promise.reject()
       } else {
+        console.log('修改中')
         return Cagetory.update({
           _id: id,
         }, {
@@ -148,6 +150,7 @@ module.exports = {
         })
       }
     })
-  }
+  },
+
 
 }

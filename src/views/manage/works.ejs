@@ -1,0 +1,30 @@
+<div class="container">
+    <% include nav.ejs %>
+    <div>
+        <a href="/admin/work/add" class="btn btn-default">添加作品</a>
+    </div>
+    <table class="table">
+        <tr>
+            <td>标题</td>
+            <td>时间</td>
+            <td>作者</td>
+            <td>类别</td>
+            <td>缩略图</td>
+            <td>操作</td>
+        </tr>
+        <% works.forEach(function (w) {
+        %>
+        <tr>
+            <td><%= w.title %></td>
+            <td><%= w.createTime %></td>
+            <td><%= w.author %></td>
+            <td><%= w.kind %></td>
+            <td><img src="<%= w.dataValue %>" style="width: 100px"></td>
+            <td><a href="/admin/category/<%= w._id.toString() %>/edit">修改</a><a
+                        href="/admin/category/del?id=<%= w._id.toString() %>">删除</a></td>
+        </tr>
+        <%
+        }) %>
+    </table>
+    <% include paging.ejs %>
+</div>
