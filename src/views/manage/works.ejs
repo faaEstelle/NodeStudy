@@ -20,11 +20,10 @@
             <td><%= w.author %></td>
             <td><%= w.kind %></td>
             <td><img src="<%= w.dataValue %>" style="width: 100px"></td>
-            <td><a href="/admin/category/<%= w._id.toString() %>/edit">修改</a><a
-                        href="/admin/category/del?id=<%= w._id.toString() %>">删除</a></td>
+            <td><a href="/admin/work/<%= w._id.toString() %>/edit">修改</a><a
+                        href="/admin/work/del?id=<%= w._id.toString() %>">删除</a></td>
         </tr>
-        <%
-        }) %>
+        <% }) %>
     </table>
     <% include paging.ejs %>
 </div>

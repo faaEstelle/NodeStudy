@@ -101,8 +101,8 @@ module.exports = {
     console.log(id)
     var name = req.body.name
     console.log(name)
-    Cagetory.findById(id).then(function (category) {
-      console.log('1:' + category)
+    Cagetory.findById(id)
+      .then(function (category) {
       if (!category) {
         res.render('manage/error', {title: '修改分类', errorInfo: '分类不存在'})
         return Promise.reject()
@@ -111,20 +111,18 @@ module.exports = {
           res.render('manage/error', {title: '修改分类', errorInfo: '未做任何修改'})
           return Promise.reject()
         } else {
-          console.log('修改查询中')
           return Cagetory.findOne({
             _id: {$ne: id},
             name: name
           })
         }
-
       }
-    }).then(function (hasCategory) {
+      })
+      .then(function (hasCategory) {
       if (hasCategory) {
         res.render('manage/error', {title: '修改分类', errorInfo: '分类已存在'})
         return Promise.reject()
       } else {
-        console.log('修改中')
         return Cagetory.update({
           _id: id,
         }, {
@@ -132,7 +130,8 @@ module.exports = {
         })
       }
 
-    }).then(function () {
+      })
+      .then(function () {
       res.redirect('/admin/category')
     })
   },
